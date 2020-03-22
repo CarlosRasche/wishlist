@@ -9,4 +9,4 @@ freeze-upgrade:
 	CUSTOM_COMPILE_COMMAND="make freeze" pip-compile --no-index --upgrade --output-file requirements.txt setup.py
 
 run:
-	python server.py
+	python3 server.py
