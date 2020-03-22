@@ -1,17 +1,10 @@
 from aiohttp import web
+from app.handlers.home_handler import handle
+from app.handlers.add_product_handler import handle_add_product
 from app.model.product_list import ProductList
 
-
-async def handle(request):
-    name = request.match_info.get("name", "Anonymous")
-    text = f'''Hello, this is the list {request.app.product_list._name}
-{request.app.product_list._product_list}'''
-        
-    return web.Response(text=text)
-
-
 app = web.Application()
-app.add_routes([web.get("/", handle), web.get("/{name}", handle)])
+app.add_routes([web.get("/", handle), web.get("/{name}", handle), web.post("/add_product", handle_add_product)])
 app.product_list = ProductList(name="wishlist")
 
 
